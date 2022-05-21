@@ -12,7 +12,7 @@ int main() {
     shape.setRadius(40.f);
     shape.setPosition((shared::screen_width / 2.f) - 40.0f, (shared::screen_height / 2.f) - 40.0f);
     shape.setFillColor(sf::Color::Cyan);
-    Pipe p(10.0f);
+    PipePool pipes(10);
 
     while (window->isOpen()) {
 
@@ -25,7 +25,9 @@ int main() {
 
         window->clear();
         window->draw(shape);
-        p.draw();
+        pipes.draw();
+        pipes.draw_debug();
+        pipes.update();
         window->display();
     }
 }
