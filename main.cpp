@@ -2,16 +2,18 @@
 #include <math.h>
 #include "Shared.hpp"
 #include "Pipes.hpp"
+#include "Bird.hpp"
 
 using shared::window;
 
 int main() {
     window = new sf::RenderWindow(sf::VideoMode(shared::screen_width, shared::screen_height), "Flappy Bird");
 
-    sf::CircleShape shape;
-    shape.setRadius(40.f);
-    shape.setPosition((shared::screen_width / 2.f) - 40.0f, (shared::screen_height / 2.f) - 40.0f);
-    shape.setFillColor(sf::Color::Cyan);
+//    sf::CircleShape shape;
+//    shape.setRadius(40.f);
+//    shape.setPosition((shared::screen_width / 2.f) - 40.0f, (shared::screen_height / 2.f) - 40.0f);
+//    shape.setFillColor(sf::Color::Cyan);
+    Bird bird;
     PipePool pipes(10);
 
     while (window->isOpen()) {
@@ -24,10 +26,12 @@ int main() {
         }
 
         window->clear();
-        window->draw(shape);
+//        window->draw(shape);
+        pipes.update();
         pipes.draw();
         pipes.draw_debug();
-        pipes.update();
+        bird.update();
+        bird.draw();
         window->display();
     }
 }
